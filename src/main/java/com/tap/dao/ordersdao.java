@@ -10,5 +10,5 @@ public interface ordersdao {
     void updateorders(orders orders);
     void deleteorders(int o_id);
     List<orders> getallorders();
-    
+    List<orders> getOrdersByUserId(int userId);
 }

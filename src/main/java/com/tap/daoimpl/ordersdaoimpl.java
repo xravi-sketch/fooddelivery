@@ -163,4 +163,43 @@ public class ordersdaoimpl implements ordersdao {
 
         return orderlist;
     }
-}
+
+
+public List<orders> getOrdersByUserId(int userId) {
+
+    String query = "SELECT * FROM orders WHERE userid = ? ORDER BY order_date DESC";
+
+    ArrayList<orders> orderList = new ArrayList<>();
+
+    try (Connection con = dbconn.getcon();
+         PreparedStatement pstmt = con.prepareStatement(query)) {
+
+        pstmt.setInt(1, userId);
+
+        ResultSet res = pstmt.executeQuery();
+
+        while (res.next()) {
+
+            orders order = new orders(
+                    res.getInt("o_id"),
+                    res.getInt("userid"),
+                    res.getDate("order_date"),
+                    res.getInt("t_amt"),
+                    res.getString("status"),
+                    res.getString("delivery_address"),
+                    res.getString("customer_name"),
+                    res.getLong("phone")
+            );
+
+            orderList.add(order);
+        }
+
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+	return orderList;
+
+
+
+    
+}}

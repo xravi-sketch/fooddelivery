@@ -34,7 +34,7 @@ public class vieworderservlet extends HttpServlet {
         ordersdaoimpl dao = new ordersdaoimpl();
 
         // Better: create getOrdersByUser(user.getUserid())
-        List<orders> orderList = dao.getallorders();
+        List<orders> orderList = dao.getOrdersByUserId(user.getUserid());
 
         req.setAttribute("orderList", orderList);
 
