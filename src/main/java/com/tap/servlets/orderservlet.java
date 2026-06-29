@@ -85,7 +85,7 @@ public class orderservlet extends HttpServlet {
         // Generate Order Id
         ordersdaoimpl orderDao = new ordersdaoimpl();
 
-        int orderId = orderDao.getallorders().size() + 1;
+       
 
         // Current Date
         Date orderDate = new Date(System.currentTimeMillis());
@@ -93,7 +93,7 @@ public class orderservlet extends HttpServlet {
         // Create Order
         orders order = new orders();
 
-        order.setO_id(orderId);
+        
         order.setUserid(userId);
         order.setOrder_date(orderDate);
         order.setT_amt(totalAmount);

@@ -13,22 +13,23 @@ public class ordersdaoimpl implements ordersdao {
     @Override
     public void addorders(orders order) {
 
-        String ins_query = "insert into orders(o_id,userid,order_date,t_amt,status,delivery_address,customer_name,phone)"
-        		+ " values(?,?,?,?,?,?,?,?)";
+    	String ins_query =
+    			"insert into orders(userid,order_date,t_amt,status,delivery_address,customer_name,phone)"
+    			+ "values(?,?,?,?,?,?,?)";
  
         int res = 0;
         
         try(Connection con = dbconn.getcon();
             PreparedStatement pstmt = con.prepareStatement(ins_query))
         {
-            pstmt.setInt(1, order.getO_id());
-            pstmt.setInt(2, order.getUserid());
-            pstmt.setDate(3, order.getOrder_date());
-            pstmt.setInt(4, order.getT_amt());
-            pstmt.setString(5, order.getStatus());
-            pstmt.setString(6, order.getDelivery_address());
-            pstmt.setString(7,order.getCustomer_name());
-            pstmt.setLong(8, order.getPhone());
+            
+            pstmt.setInt(1, order.getUserid());
+            pstmt.setDate(2, order.getOrder_date());
+            pstmt.setInt(3, order.getT_amt());
+            pstmt.setString(4, order.getStatus());
+            pstmt.setString(5, order.getDelivery_address());
+            pstmt.setString(6,order.getCustomer_name());
+            pstmt.setLong(7, order.getPhone());
 
            res = pstmt.executeUpdate();
 
